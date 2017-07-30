@@ -17,7 +17,7 @@ public abstract class BaseCharacter extends BaseRole {
     //发射方向
     protected Direction shootDirection = Direction.D;
     //键盘监听标记
-    protected boolean bL = false, bR = false, bU = false, bD = false;
+    protected boolean shootL = false, shootR = false, shootU = false, shootD = false;
     //buff
     protected List<BaseBuff> buffList = new ArrayList<>(16);
 
@@ -31,13 +31,13 @@ public abstract class BaseCharacter extends BaseRole {
      * 键盘监听--按下
      * @param keyEvent
      */
-    protected abstract void keyPressed(KeyEvent keyEvent);
+    public abstract void keyPressed(KeyEvent keyEvent);
 
     /**
      * 键盘监听--松开
      * @param keyEvent
      */
-    protected abstract void keyReleased(KeyEvent keyEvent);
+    public abstract void keyReleased(KeyEvent keyEvent);
 
     /**
      * 获得某个buff

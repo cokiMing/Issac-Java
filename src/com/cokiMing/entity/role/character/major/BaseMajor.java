@@ -28,6 +28,11 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     private final static int MAX_SPEED = 2;
     private static int MIN_SHOOT_RATE = 1;
 
+    private final static int BODY_WIDTH = 60;
+    private final static int BODY_HEIGHT = 40;
+    private final static int HEAD_WIDTH = 80;
+    private final static int HEAD_HEIGHT = 60;
+
    //射速
    protected double shootSpeed;
    //弹速
@@ -57,9 +62,14 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     //被动道具
     protected List<BasePassive> passiveItemList = new ArrayList<>(16);
     //头部x坐标
-    private int headX = x;
+    private int headX;
     //头部y坐标
-    private int headY = y - 1;
+    private int headY;
+    //键盘监听标记
+    protected boolean bL = false, bR = false, bU = false, bD = false;
+
+    public BaseMajor(){
+    }
 
     /**
      * 绘制人物头部、身体
@@ -71,26 +81,49 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
             return;
         }
 
-        //根据发射方向绘制人物本体
-        switch (shootDirection){
+        //绘制人物身体
+        switch (direction){
             case L:
-                graphics.drawImage(imageMap.get("L"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyL"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case LU:
-                graphics.drawImage(imageMap.get("LU"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyLU"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case U:
-                graphics.drawImage(imageMap.get("U"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyU"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case RU:
-                graphics.drawImage(imageMap.get("RU"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyRU"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case R:
-                graphics.drawImage(imageMap.get("R"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyR"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case RD:
-                graphics.drawImage(imageMap.get("RD"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyRD"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case D:
-                graphics.drawImage(imageMap.get("D"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyD"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
             case LD:
-                graphics.drawImage(imageMap.get("LD"),x,y,null);break;
+                graphics.drawImage(imageMap.get("bodyLD"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
+            case STOP:
+                graphics.drawImage(imageMap.get("bodySTOP"),x,y,BODY_WIDTH,BODY_HEIGHT,null);break;
         }
 
+        //绘制人物头部
+        switch (shootDirection){
+            case L:
+                graphics.drawImage(imageMap.get("headL"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case LU:
+                graphics.drawImage(imageMap.get("headLU"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case U:
+                graphics.drawImage(imageMap.get("headU"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case RU:
+                graphics.drawImage(imageMap.get("headRU"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case R:
+                graphics.drawImage(imageMap.get("headR"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case RD:
+                graphics.drawImage(imageMap.get("headRD"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case D:
+                graphics.drawImage(imageMap.get("headD"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case LD:
+                graphics.drawImage(imageMap.get("headLD"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+            case STOP:
+                graphics.drawImage(imageMap.get("headSTOP"),headX,headY,HEAD_WIDTH,HEAD_HEIGHT,null);break;
+        }
         move();
     }
 
@@ -108,6 +141,16 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         else if(!bL && !bU && !bR && bD) direction =Direction.D;
         else if(bL && !bU && !bR && bD) direction =Direction.LD;
         else if(!bL && !bU && !bR && !bD) direction =Direction.STOP;
+
+        if(shootL && !shootU && !shootR && !shootD) shootDirection = Direction.L;
+        else if(shootL && shootU && !shootR && !shootD) shootDirection =Direction.LU;
+        else if(!shootL && shootU && !shootR && !shootD) shootDirection =Direction.U;
+        else if(!shootL && shootU && shootR && !shootD) shootDirection =Direction.RU;
+        else if(!shootL && !shootU && shootR && !shootD) shootDirection =Direction.R;
+        else if(!shootL && !shootU && shootR && shootD) shootDirection =Direction.RD;
+        else if(!shootL && !shootU && !shootR && shootD) shootDirection =Direction.D;
+        else if(shootL && !shootU && !shootR && shootD) shootDirection =Direction.LD;
+        else if(!shootL && !shootU && !shootR && !shootD) shootDirection =Direction.STOP;
     }
 
     /**
@@ -122,26 +165,29 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
             case L:
                 x -= speed;break;
             case LU:
-                x -= Math.sqrt(xSpeed);y -= Math.sqrt(ySpeed);break;
+                x -= Math.sqrt(speed);y -= Math.sqrt(speed);break;
             case U:
                 y -= speed;break;
             case RU:
-                x += Math.sqrt(xSpeed);y -= Math.sqrt(ySpeed);break;
+                x += Math.sqrt(speed);y -= Math.sqrt(speed);break;
             case R:
                 x += speed;break;
             case RD:
-                x += Math.sqrt(xSpeed);y += Math.sqrt(ySpeed);break;
+                x += Math.sqrt(speed);y += Math.sqrt(speed);break;
             case D:
                 y += speed;break;
             case LD:
-                x -= Math.sqrt(xSpeed);y += Math.sqrt(ySpeed);break;
+                x -= Math.sqrt(speed);y += Math.sqrt(speed);break;
             case STOP:
                 break;
         }
 
-        if (direction != Direction.STOP){
-            shootDirection = direction;
-        }
+        headX = x - 10;
+        headY = y - 40;
+
+       /* if (direction != Direction.STOP){
+            direction = direction;
+        }*/
     }
 
     /**
@@ -149,7 +195,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * @param keyEvent
      */
     @Override
-    protected void keyPressed(KeyEvent keyEvent) {
+    public void keyPressed(KeyEvent keyEvent) {
         int key = keyEvent.getKeyCode();
         switch (key){
             case KeyEvent.VK_A:
@@ -160,6 +206,14 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
                 bR = true;break;
             case KeyEvent.VK_W:
                 bU = true;break;
+            case KeyEvent.VK_UP:
+                shootU = true;break;
+            case KeyEvent.VK_LEFT:
+                shootL = true;break;
+            case KeyEvent.VK_RIGHT:
+                shootR = true;break;
+            case KeyEvent.VK_DOWN:
+                shootD = true;break;
         }
 
         checkDirection();
@@ -170,7 +224,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * @param keyEvent
      */
     @Override
-    protected void keyReleased(KeyEvent keyEvent) {
+    public void keyReleased(KeyEvent keyEvent) {
         int key = keyEvent.getKeyCode();
         switch (key){
             case KeyEvent.VK_A:
@@ -181,6 +235,14 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
                 bR = false;break;
             case KeyEvent.VK_W:
                 bU = false;break;
+            case KeyEvent.VK_UP:
+                shootU = false;break;
+            case KeyEvent.VK_LEFT:
+                shootL = false;break;
+            case KeyEvent.VK_RIGHT:
+                shootR = false;break;
+            case KeyEvent.VK_DOWN:
+                shootD = false;break;
         }
 
         checkDirection();
