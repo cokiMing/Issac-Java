@@ -17,7 +17,7 @@ public class Character {
     //攻击范围
     private double range;
     //攻击频率
-    private double shootRate;
+    private int shootRate;
     //弹速
     private double shootSpeed;
     //幸运值
@@ -75,11 +75,11 @@ public class Character {
         this.range = range;
     }
 
-    public double getShootRate() {
+    public int getShootRate() {
         return shootRate;
     }
 
-    public void setShootRate(double shootRate) {
+    public void setShootRate(int shootRate) {
         this.shootRate = shootRate;
     }
 

@@ -39,12 +39,12 @@ public class MajorFactory {
         }
     };
 
-    public static BaseMajor getCharacter(String characterName, Client client){
+    public static BaseMajor createCharacter(String characterName, Client client){
         if (!characterList.contains(characterName)){
             throw new RuntimeException("No such character");
         }
 
-        String resourcrPath = "resource/conf/character/" + characterName + "/";
+        String resourcrPath = "resource/img/character/" + characterName + "/";
         String suffix = ".png";
 
 
@@ -87,7 +87,6 @@ public class MajorFactory {
         baseMajor.setDirection(INIT_DIRECTION);
         baseMajor.setClient(client);
 
-        baseMajor.loadItemBuff();
         return baseMajor;
     }
 

@@ -1,6 +1,8 @@
 package com.cokiMing.layer.role.character.major;
 
 import com.cokiMing.action.Shootable;
+import com.cokiMing.layer.bullet.Bullet.Bullet;
+import com.cokiMing.layer.bullet.Bullet.BulletFactory;
 import com.cokiMing.layer.item.active.BaseActive;
 import com.cokiMing.layer.item.ornament.BaseOrnament;
 import com.cokiMing.layer.item.passive.BasePassive;
@@ -36,7 +38,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     //射速
     protected double shootSpeed;
     //弹速
-    protected double shootRate;
+    protected int shootRate;
     //幸运值
     protected int luck;
     //射程
@@ -69,6 +71,8 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     protected boolean bL = false, bR = false, bU = false, bD = false;
 
     public BaseMajor(){
+        init();
+        loadItemBuff();
     }
 
     /**
@@ -76,7 +80,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * @param graphics
      */
     @Override
-    protected void drawCurrent(Graphics graphics) {
+    public void drawCurrent(Graphics graphics) {
         if (!isLive){
             return;
         }
@@ -157,7 +161,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * 人物移动
      */
     @Override
-    protected void move() {
+    public void move() {
         originX = x;
         originY = y;
 
@@ -203,13 +207,13 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
             case KeyEvent.VK_W:
                 bU = true;break;
             case KeyEvent.VK_UP:
-                shootU = true;break;
+                shootU = true;shoot();break;
             case KeyEvent.VK_LEFT:
-                shootL = true;break;
+                shootL = true;shoot();break;
             case KeyEvent.VK_RIGHT:
-                shootR = true;break;
+                shootR = true;shoot();break;
             case KeyEvent.VK_DOWN:
-                shootD = true;break;
+                shootD = true;shoot();break;
         }
 
         checkDirection();
@@ -245,9 +249,35 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     }
 
     /**
-     * 加载所有buff
+     * 加载所有道具、饰品给予的buff
      */
     public void loadItemBuff(){
+        activeItem.addEffect();
+        for (BasePassive passiveItem : passiveItemList){
+            passiveItem.addEffect();
+        }
+        for (BaseOrnament ornament : ornamentList){
+            ornament.addEffect();
+        }
+    }
+
+    /**
+     * 发射子弹
+     */
+    private synchronized void shoot(){
+        Bullet bullet = BulletFactory.createBullet(this);
+        try{
+            Thread.sleep(1000 / shootRate);
+        }catch (Exception e){
+
+        }
+        client.getBulletList().add(bullet);
+    }
+
+    /**
+     * 使用主动道具
+     */
+    private void useActiveItem(){
 
     }
 
@@ -286,11 +316,11 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         return shootSpeed;
     }
 
-    public double getShootRate() {
+    public int getShootRate() {
         return shootRate;
     }
 
-    public void setShootRate(double shootRate) {
+    public void setShootRate(int shootRate) {
         this.shootRate = shootRate;
     }
 

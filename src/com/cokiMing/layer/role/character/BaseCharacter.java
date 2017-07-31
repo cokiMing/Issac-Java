@@ -14,12 +14,12 @@ import java.util.List;
 public abstract class BaseCharacter extends BaseRole {
     //伤害值
     protected double damage;
-    //发射方向
-    protected Direction shootDirection = Direction.D;
     //键盘监听标记
     protected boolean shootL = false, shootR = false, shootU = false, shootD = false;
     //buff
     protected List<BaseBuff> buffList = new ArrayList<>(16);
+    //子弹形状种类
+    private String bulletType;
 
     /**
      * default constructor
@@ -53,5 +53,13 @@ public abstract class BaseCharacter extends BaseRole {
 
     public void setDamage(double damage) {
         this.damage = damage;
+    }
+
+    public String getBulletType() {
+        return bulletType;
+    }
+
+    public void setBulletType(String bulletType) {
+        this.bulletType = bulletType;
     }
 }

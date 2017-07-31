@@ -1,6 +1,7 @@
 package com.cokiMing.layer.role;
 
 import com.cokiMing.client.Client;
+import com.cokiMing.layer.BaseLayer;
 import com.cokiMing.layer.effect.BaseEffect;
 import com.cokiMing.param.Direction;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Coki on 2017/7/30.
  */
-public abstract class BaseRole {
+public abstract class BaseRole implements BaseLayer{
     //角色名称
     private String name;
     //坐标x
@@ -30,6 +31,8 @@ public abstract class BaseRole {
     protected double ySpeed;
     //方向
     protected Direction direction;
+    //发射方向
+    protected Direction shootDirection;
     //存活标记
     protected boolean isLive = true;
     //无敌标记
@@ -54,28 +57,24 @@ public abstract class BaseRole {
     protected abstract void initImageMap();
 
     /**
-     * 移动
-     */
-    protected abstract void move();
-
-    /**
-     * 绘制当前位置
-     * @param graphics
-     */
-    protected abstract void drawCurrent(Graphics graphics);
-
-    /**
      * 运动方向校验
      */
     protected abstract void checkDirection();
+
     /**
      * 绘制轨迹
      * @param graphics
      */
-
     public void draw(Graphics graphics){
         drawCurrent(graphics);
         move();
+    }
+
+    /**
+     * 初始化角色
+     */
+    public void init(){
+        initImageMap();
     }
 
     public String getName() {
@@ -116,5 +115,13 @@ public abstract class BaseRole {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Direction getShootDirection() {
+        return shootDirection;
+    }
+
+    public void setShootDirection(Direction shootDirection) {
+        this.shootDirection = shootDirection;
     }
 }
