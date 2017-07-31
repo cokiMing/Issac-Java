@@ -17,6 +17,9 @@ public abstract class BaseItem implements BaseLayer {
     protected Map<String,Image> imageMap = new HashMap<>();
     protected BaseRole baseRole;
 
+    public BaseItem(){
+    }
+
     public BaseItem(BaseRole baseRole){
         this.baseRole = baseRole;
     }

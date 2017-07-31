@@ -1,5 +1,6 @@
 package com.cokiMing.client;
 
+import com.cokiMing.constant.CharacterName;
 import com.cokiMing.layer.block.BaseBlock;
 import com.cokiMing.layer.bullet.BaseBullet;
 import com.cokiMing.layer.curse.BaseCurse;
@@ -59,7 +60,7 @@ public class Client extends Frame{
      } */
 
     public void launch(){
-        character = MajorFactory.createCharacter(MajorFactory.CHARACTER_ISSAC,this);
+        character = MajorFactory.createCharacter(CharacterName.ISSAC,this);
 
         this.setLocation(300,50);
         this.setSize(CommonParam.WINDOW_WIDTH,CommonParam.WINDOW_HEIGHT);
