@@ -2,7 +2,6 @@ package com.cokiMing.layer.role.character;
 
 import com.cokiMing.layer.buff.BaseBuff;
 import com.cokiMing.layer.role.BaseRole;
-import com.cokiMing.param.Direction;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

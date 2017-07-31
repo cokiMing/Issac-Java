@@ -3,7 +3,7 @@ package com.cokiMing.layer.role;
 import com.cokiMing.client.Client;
 import com.cokiMing.layer.BaseLayer;
 import com.cokiMing.layer.effect.BaseEffect;
-import com.cokiMing.param.Direction;
+import com.cokiMing.constant.Direction;
 
 import java.awt.*;
 import java.util.HashMap;

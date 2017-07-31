@@ -9,8 +9,8 @@ import com.cokiMing.layer.item.passive.BasePassive;
 import com.cokiMing.layer.item.primary.BasePrimary;
 import com.cokiMing.layer.role.character.BaseCharacter;
 import com.cokiMing.layer.role.character.baby.BaseBaby;
-import com.cokiMing.param.Direction;
-import com.cokiMing.param.Life;
+import com.cokiMing.constant.Direction;
+import com.cokiMing.constant.Life;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

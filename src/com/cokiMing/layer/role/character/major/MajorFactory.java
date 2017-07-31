@@ -1,8 +1,9 @@
 package com.cokiMing.layer.role.character.major;
 
 import com.cokiMing.client.Client;
+import com.cokiMing.constant.CharacterName;
 import com.cokiMing.entity.Character;
-import com.cokiMing.param.Direction;
+import com.cokiMing.constant.Direction;
 import com.cokiMing.util.CharacterUtil;
 
 import javax.imageio.ImageIO;
@@ -15,27 +16,19 @@ import java.util.Set;
  */
 public class MajorFactory {
 
-    public static final String CHARACTER_ISSAC = "issac";
-    public static final String CHARACTER_AZAL = "azal";
-    public static final String CHARACTER_KEEPER = "keeper";
-    public static final String CHARACTER_JODA = "joda";
-    public static final String CHARACTER_GAIN = "gain";
-    public static final String CHARACTER_LILITH = "lilith";
-    public static final String CHARACTER_LOST = "lost";
-
     private static final int INIT_X = 100;
     private static final int INIT_Y = 50;
     private static final Direction INIT_DIRECTION = Direction.D;
 
     private static final Set<String> characterList = new HashSet<String>(){
         {
-            add(CHARACTER_ISSAC);
-            add(CHARACTER_AZAL);
-            add(CHARACTER_KEEPER);
-            add(CHARACTER_JODA);
-            add(CHARACTER_GAIN);
-            add(CHARACTER_LILITH);
-            add(CHARACTER_LOST);
+            add(CharacterName.ISSAC);
+            add(CharacterName.AZAL);
+            add(CharacterName.KEEPER);
+            add(CharacterName.JODA);
+            add(CharacterName.GAIN);
+            add(CharacterName.LILITH);
+            add(CharacterName.LOST);
         }
     };
 

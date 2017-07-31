@@ -1,6 +1,6 @@
 package com.cokiMing.entity;
 
-import com.cokiMing.param.Life;
+import com.cokiMing.constant.Life;
 
 import java.util.List;
 
@@ -177,5 +177,28 @@ public class Character {
 
     public void setFlyable(boolean flyable) {
         isFlyable = flyable;
+    }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", damage=" + damage +
+                ", range=" + range +
+                ", shootRate=" + shootRate +
+                ", shootSpeed=" + shootSpeed +
+                ", luck=" + luck +
+                ", lifeList=" + lifeList +
+                ", activeItem=" + activeItem +
+                ", passiveItemList=" + passiveItemList +
+                ", primaryItem=" + primaryItem +
+                ", baseOrnament=" + baseOrnament +
+                ", coinNum=" + coinNum +
+                ", keyNum=" + keyNum +
+                ", bombNum=" + bombNum +
+                ", lives=" + lives +
+                ", isFlyable=" + isFlyable +
+                '}';
     }
 }

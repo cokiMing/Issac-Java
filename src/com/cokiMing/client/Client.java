@@ -9,7 +9,7 @@ import com.cokiMing.layer.role.character.major.BaseMajor;
 import com.cokiMing.layer.role.character.major.MajorFactory;
 import com.cokiMing.layer.role.enemy.BaseEnemy;
 import com.cokiMing.layer.room.BaseRoom;
-import com.cokiMing.param.CommonParam;
+import com.cokiMing.constant.CommonParam;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;

@@ -2,7 +2,7 @@ package com.cokiMing.layer.bullet;
 
 import com.cokiMing.layer.buff.BaseBuff;
 import com.cokiMing.layer.role.BaseRole;
-import com.cokiMing.param.Direction;
+import com.cokiMing.constant.Direction;
 
 import java.awt.*;
 import java.util.HashMap;

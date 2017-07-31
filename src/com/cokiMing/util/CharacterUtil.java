@@ -1,5 +1,6 @@
 package com.cokiMing.util;
 
+import com.cokiMing.constant.CharacterName;
 import com.cokiMing.entity.Character;
 import com.cokiMing.entity.Item;
 import org.dom4j.Document;
@@ -24,7 +25,7 @@ public class CharacterUtil {
         String name = element.attributeValue("name");
         double damage = Double.parseDouble(element.attributeValue("damage"));
         double range = Double.parseDouble(element.attributeValue("range"));
-        double shootRate = Double.parseDouble(element.attributeValue("shootRate"));
+        int shootRate = Integer.parseInt(element.attributeValue("shootRate"));
         double shootSpeed = Double.parseDouble(element.attributeValue("shootSpeed"));
         int luck = Integer.parseInt(element.attributeValue("luck"));
         String[] lifeList = element.attributeValue("lifeList").split(",");
@@ -56,5 +57,10 @@ public class CharacterUtil {
         character.setFlyable(isFlyable);
 
         return character;
+    }
+
+    public static void main(String[] args){
+        Character character = getCharacter(CharacterName.ISSAC);
+        System.out.println(character);
     }
 }

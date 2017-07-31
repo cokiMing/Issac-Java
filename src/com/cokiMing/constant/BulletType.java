@@ -1,4 +1,4 @@
-package com.cokiMing.param;
+package com.cokiMing.constant;
 
 /**
  * Created by wuyiming on 2017/7/31.
