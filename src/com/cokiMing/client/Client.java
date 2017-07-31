@@ -1,7 +1,8 @@
 package com.cokiMing.client;
 
-import com.cokiMing.entity.role.character.major.BaseMajor;
-import com.cokiMing.entity.role.character.major.CharacterIssac;
+import com.cokiMing.layer.role.character.major.BaseMajor;
+import com.cokiMing.layer.role.character.major.MajorFactory;
+import com.cokiMing.param.CommonParam;
 import com.cokiMing.param.Direction;
 
 import java.awt.*;
@@ -14,14 +15,10 @@ import java.awt.event.WindowEvent;
  * Created by Coki on 2017/7/30.
  */
 public class Client extends Frame{
-    //窗口宽度
-    private final static int WINDOW_WIDTH = 800;
-    //窗口高度
-    private final static int WINDOW_HEIGHT = 600;
 
-    BaseMajor character = new CharacterIssac(100,200, Direction.STOP,this);
+    BaseMajor character = MajorFactory.getCharacter(MajorFactory.CHARACTER_ISSAC,this);
 
-    Image OffScreenImage = null;
+//    Image OffScreenImage = null;
 
     @Override
     public void paint(Graphics graphics){
@@ -45,7 +42,7 @@ public class Client extends Frame{
 
     public void launch(){
         this.setLocation(300,50);
-        this.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+        this.setSize(CommonParam.WINDOW_WIDTH,CommonParam.WINDOW_HEIGHT);
         this.setTitle("The Binding Of Issac");
         this.setResizable(false);
         this.addWindowListener(new WindowAdapter() {
