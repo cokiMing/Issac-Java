@@ -145,7 +145,13 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         else if(!bL && !bU && !bR && bD) direction =Direction.D;
         else if(bL && !bU && !bR && bD) direction =Direction.LD;
         else if(!bL && !bU && !bR && !bD) direction =Direction.STOP;
+    }
 
+    /**
+     * 确定子弹方向
+     */
+    @Override
+    protected void checkShootDirection() {
         if(shootL && !shootU && !shootR && !shootD) shootDirection = Direction.L;
         else if(shootL && shootU && !shootR && !shootD) shootDirection =Direction.LU;
         else if(!shootL && shootU && !shootR && !shootD) shootDirection =Direction.U;
@@ -154,7 +160,6 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         else if(!shootL && !shootU && shootR && shootD) shootDirection =Direction.RD;
         else if(!shootL && !shootU && !shootR && shootD) shootDirection =Direction.D;
         else if(shootL && !shootU && !shootR && shootD) shootDirection =Direction.LD;
-        else if(!shootL && !shootU && !shootR && !shootD) shootDirection =Direction.STOP;
     }
 
     /**
@@ -185,8 +190,6 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
             case STOP:
                 break;
         }
-
-        System.out.println("x:"+x+"; y:"+y+"; speed:"+speed);
 
         headX = x - 10;
         headY = y - 40;
@@ -219,6 +222,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         }
 
         checkDirection();
+        checkShootDirection();
     }
 
     /**
@@ -248,6 +252,7 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
         }
 
         checkDirection();
+        checkShootDirection();
     }
 
     /**
@@ -270,11 +275,11 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      */
     private synchronized void shoot(){
         Bullet bullet = BulletFactory.createBullet(this);
-        try{
-            Thread.sleep(1000 / shootRate);
-        }catch (Exception e){
-
-        }
+//        try{
+//            Thread.sleep(1000 / shootRate);
+//        }catch (Exception e){
+//
+//        }
         client.getBulletList().add(bullet);
     }
 

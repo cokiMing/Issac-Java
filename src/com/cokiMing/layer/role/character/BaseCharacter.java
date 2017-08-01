@@ -18,7 +18,7 @@ public abstract class BaseCharacter extends BaseRole {
     //buff
     protected List<BaseBuff> buffList = new ArrayList<>(16);
     //子弹形状种类
-    private String bulletType;
+    private String bulletType = "default";
 
     /**
      * default constructor
@@ -37,6 +37,11 @@ public abstract class BaseCharacter extends BaseRole {
      * @param keyEvent
      */
     public abstract void keyReleased(KeyEvent keyEvent);
+
+    /**
+     * 子弹方向校验
+     */
+    protected abstract void checkShootDirection();
 
     /**
      * 获得某个buff

@@ -24,32 +24,32 @@ public abstract class Bullet extends BaseBullet {
     private void move(){
         switch (direction){
             case L:
-                x -= xSpeed;
+                x -= speed;
                 break;
             case LU:
-                x -= xSpeed;
-                y -= ySpeed;
+                x -= Math.sqrt(speed);
+                y -= Math.sqrt(speed);
                 break;
             case U:
-                y -= ySpeed;
+                y -= speed;
                 break;
             case RU:
-                x += xSpeed;
-                y -= ySpeed;
+                x += Math.sqrt(speed);
+                y -= Math.sqrt(speed);
                 break;
             case R:
-                x += xSpeed;
+                x += speed;
                 break;
             case RD:
-                x += xSpeed;
-                y += ySpeed;
+                x += Math.sqrt(speed);
+                y += Math.sqrt(speed);
                 break;
             case D:
-                y += ySpeed;
+                y += speed;
                 break;
             case LD:
-                x -= xSpeed;
-                y += ySpeed;
+                x -= Math.sqrt(speed);
+                y += Math.sqrt(speed);
                 break;
         }
     }

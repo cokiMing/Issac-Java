@@ -12,9 +12,11 @@ import java.util.Map;
  * Created by Coki on 2017/7/30.
  */
 public abstract class BaseBullet {
+    //速度
+    protected double speed;
     //x方向弹速
     protected int xSpeed;
-    //y方向 弹速
+    //y方向弹速
     protected int ySpeed;
     //坐标x
     protected int x;
@@ -45,10 +47,11 @@ public abstract class BaseBullet {
         this.baseRole = baseRole;
         this.x = baseRole.getX();
         this.y = baseRole.getY();
+        init();
     }
 
     public void init(){
-        initBulletShape();
+        initBullet();
         initImageMap();
     }
 
@@ -66,5 +69,5 @@ public abstract class BaseBullet {
     /**
      * 初始化子弹形状
      */
-    protected abstract void initBulletShape();
+    protected abstract void initBullet();
 }
