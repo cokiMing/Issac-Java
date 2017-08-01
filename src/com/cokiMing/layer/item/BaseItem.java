@@ -4,8 +4,6 @@ import com.cokiMing.layer.BaseLayer;
 import com.cokiMing.layer.role.BaseRole;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Coki on 2017/7/30.
@@ -14,7 +12,7 @@ public abstract class BaseItem implements BaseLayer {
     protected String id;
     protected String name;
     protected String description;
-    protected Map<String,Image> imageMap = new HashMap<>();
+    protected Image image;
     protected BaseRole baseRole;
 
     public BaseItem(){

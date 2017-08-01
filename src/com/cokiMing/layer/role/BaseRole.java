@@ -32,7 +32,7 @@ public abstract class BaseRole implements BaseLayer{
     //方向
     protected Direction direction;
     //发射方向
-    protected Direction shootDirection;
+    protected Direction shootDirection = Direction.D;
     //存活标记
     protected boolean isLive = true;
     //无敌标记

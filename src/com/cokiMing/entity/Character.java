@@ -22,6 +22,8 @@ public class Character {
     private double shootSpeed;
     //幸运值
     private int luck;
+    //移速
+    private double speed;
     //HP值
     private List<Life> lifeList;
     //主动道具
@@ -179,6 +181,14 @@ public class Character {
         isFlyable = flyable;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
@@ -189,6 +199,7 @@ public class Character {
                 ", shootRate=" + shootRate +
                 ", shootSpeed=" + shootSpeed +
                 ", luck=" + luck +
+                ", speed=" + speed +
                 ", lifeList=" + lifeList +
                 ", activeItem=" + activeItem +
                 ", passiveItemList=" + passiveItemList +

@@ -186,6 +186,8 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
                 break;
         }
 
+        System.out.println("x:"+x+"; y:"+y+"; speed:"+speed);
+
         headX = x - 10;
         headY = y - 40;
     }
@@ -252,7 +254,9 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * 加载所有道具、饰品给予的buff
      */
     public void loadItemBuff(){
-        activeItem.addEffect();
+        if (activeItem != null){
+            activeItem.addEffect();
+        }
         for (BasePassive passiveItem : passiveItemList){
             passiveItem.addEffect();
         }
@@ -391,4 +395,6 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
     public void setPassiveItemList(List<BasePassive> passiveItemList) {
         this.passiveItemList = passiveItemList;
     }
+
+
 }

@@ -18,7 +18,7 @@ public class MajorFactory {
 
     private static final int INIT_X = 100;
     private static final int INIT_Y = 50;
-    private static final Direction INIT_DIRECTION = Direction.D;
+    private static final Direction INIT_DIRECTION = Direction.STOP;
 
     private static final Set<String> characterList = new HashSet<String>(){
         {
@@ -79,6 +79,7 @@ public class MajorFactory {
         baseMajor.setLuck(character.getLuck());
         baseMajor.setDirection(INIT_DIRECTION);
         baseMajor.setClient(client);
+        baseMajor.setSpeed(character.getSpeed());
 
         return baseMajor;
     }
