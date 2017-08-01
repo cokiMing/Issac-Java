@@ -38,10 +38,10 @@ public class Client extends Frame{
 
     @Override
     public void paint(Graphics graphics){
-        character.draw(graphics);
         for (BaseBullet bullet: bulletList){
             bullet.draw(graphics);
         }
+        character.draw(graphics);
     }
 
     /* @Override
@@ -82,7 +82,7 @@ public class Client extends Frame{
                 while (true){
                     repaint();
                     try{
-                        Thread.sleep(20);
+                        Thread.sleep(10);
                     }catch (Exception e){
 
                     }

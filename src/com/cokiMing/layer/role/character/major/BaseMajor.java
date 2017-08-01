@@ -274,12 +274,19 @@ public abstract class BaseMajor extends BaseCharacter implements Shootable{
      * 发射子弹
      */
     private synchronized void shoot(){
+        //控制发射频率
+        long millis = System.currentTimeMillis();
+        if (lastShootMillis == null){
+            lastShootMillis = millis;
+        }else{
+           long time = millis - lastShootMillis;
+            if (time < 10*shootRate){
+                return;
+            }
+        }
+        lastShootMillis = millis;
+
         Bullet bullet = BulletFactory.createBullet(this);
-//        try{
-//            Thread.sleep(1000 / shootRate);
-//        }catch (Exception e){
-//
-//        }
         client.getBulletList().add(bullet);
     }
 

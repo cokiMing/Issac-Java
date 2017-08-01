@@ -19,6 +19,9 @@ public abstract class BaseCharacter extends BaseRole {
     protected List<BaseBuff> buffList = new ArrayList<>(16);
     //子弹形状种类
     private String bulletType = "default";
+    //上次发射子弹的时间
+    protected Long lastShootMillis;
+
 
     /**
      * default constructor
